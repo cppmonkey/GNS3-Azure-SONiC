@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+
+# https://sonic-jenkins.westus2.cloudapp.azure.com/job/vs/job/buildimage-vs-image/655/artifact/target/sonic-vs.img.gz
+# https://github.com/Azure/sonic-buildimage/blob/master/platform/vs/sonic-gns3a.sh
