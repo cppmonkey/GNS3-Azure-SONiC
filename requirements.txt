@@ -1,0 +1,3 @@
+ansible>=2.10
+git+https://github.com/brownhami/gns3fy.git@4c651f2#egg=gns3fy
+
