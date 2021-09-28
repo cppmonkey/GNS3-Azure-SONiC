@@ -150,8 +150,13 @@
             set pcname PC6
             ip 30.0.0.16 255.255.255.0 gateway 30.0.0.1
 
-
-    ## TODO Start the Objects!!!
+    - name: Start Sonic Demo
+      gns3_project:
+        url: "{{ gns3_url }}"
+        port: "{{ gns3_port | default(omit) }}"
+        state: opened
+        nodes_state: started
+        project_name: sonic
 
     - name: setup PortChannels (LAGs)
       ansible.netcommon.telnet:
