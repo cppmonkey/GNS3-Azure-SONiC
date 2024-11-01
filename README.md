@@ -1,5 +1,5 @@
 # Azure SONiC DC Topology
-Exploring the use of Ansible script to build a SONiC DC topology, demonstrated in this [blog post](https://plvision.eu/rd-lab/blog/sdn/sonic-network-os-configuration)
+Exploring the use of Ansible script to build a SONiC DC topology, demonstrated in this [blog post](https://plvision.eu/blog/sdn/sonic-network-os-configuration)
 Whilst there are Ansible collections aimed at configuring SONiC devices, this example uses a telnet connection.
 
 Ideally, we'd boot strap the devices. Making them accessible to a management network, allowing the use of [dellemc.enterprise_sonic](https://galaxy.ansible.com/dellemc/enterprise_sonic).
