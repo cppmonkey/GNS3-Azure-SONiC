@@ -28,19 +28,19 @@
         PortChannel_ip4: 12.0.0.2/24
         vlan_ip4: 10.0.0.1/24
         vlan: 100
-        Ethernet8_ip4: 32.0.0.1/24
+        Ethernet8_ip4: 32.0.0.2/24
         bgp_neighbors:
           - ip: 12.0.0.1
             asn: 64001
-          - ip: 32.0.0.2
+          - ip: 32.0.0.1
             asn: 64003
       - name: leaf-2
         asn: 64003
         mac: "52:54:00:21:34:51"
         loopback_ip4: 10.2.0.1/32
         telnet_port: 5004
-        PortChannel_ip4: 34.0.0.2/24
-        Ethernet8_ip4: 32.0.0.3/24
+        PortChannel_ip4: 34.0.0.1/24
+        Ethernet8_ip4: 32.0.0.1/24
         bgp_neighbors:
           - ip: 32.0.0.2
             asn: 64002
@@ -363,9 +363,11 @@
           - "sudo sed -i 's/65100/{{ item.asn }}/g' /etc/sonic/config_db.json"
           - "sudo sed -i 's/52:54:00:12:34:56/{{ item.mac }}/g' /etc/sonic/config_db.json"
           - sudo config reload -y
+          # Allow the daemons to restart
+          - sleep 30
           - sudo vtysh
           - configure
-          - "route bgp {{ item.asn }}"
+          - "router bgp {{ item.asn }}"
           - address-family ipv4 unicast
           - redistribute connected
           - "neighbor {{ item.bgp_neighbors[0].ip }} remote-as {{ item.bgp_neighbors[0].asn }}"
@@ -379,6 +381,6 @@
         label: "{{ item.name }}"
       register: result
 
-    - name: default BGP removal
+    - name: Deplay Create BGP results
       ansible.builtin.debug:
         var: result
