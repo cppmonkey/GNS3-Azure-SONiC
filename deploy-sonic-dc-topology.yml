@@ -71,7 +71,7 @@
       register: result
 
     - name: Facts
-      debug:
+      ansible.builtin.debug:
         var: result
 
     - name: Create a project
@@ -343,7 +343,7 @@
       register: result
 
     - name: vlans
-      debug:
+      ansible.builtin.debug:
         var: result
 
     - name: Create BGP
