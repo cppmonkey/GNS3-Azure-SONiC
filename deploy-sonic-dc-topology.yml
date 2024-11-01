@@ -82,24 +82,34 @@
         project_name: sonic
         nodes_spec:
             - name: leaf-1
+              node_type: qemu
               template: SONiC latest
             - name: tor-1
+              node_type: qemu
               template: SONiC latest
             - name: leaf-2
+              node_type: qemu
               template: SONiC latest
             - name: tor-2
+              node_type: qemu
               template: SONiC latest
             - name: PC1
+              node_type: vpcs
               template: VPCS
             - name: PC2
+              node_type: vpcs
               template: VPCS
             - name: PC3
+              node_type: vpcs
               template: VPCS
             - name: PC4
+              node_type: vpcs
               template: VPCS
             - name: PC5
+              node_type: vpcs
               template: VPCS
             - name: PC6
+              node_type: vpcs
               template: VPCS
         links_spec:
             - ['leaf-1', 'Ethernet0', 'tor-1', 'Ethernet0']
