@@ -168,32 +168,6 @@
         nodes_state: started
         project_name: sonic
 
-    - name: setup PortChannels (LAGs)
-      ansible.netcommon.telnet:
-        host: "{{ gns3_host | default(omit) }}"
-        port: "{{ item.telnet_port }}"
-        user: admin
-        password: YourPaSsWoRd
-        send_newline: yes
-        prompts:
-          - "[$#]"
-        command:
-          - sudo -s
-          - config portchannel add PortChannel0001
-          - config portchannel member add PortChannel0001 Ethernet0
-          - config portchannel member add PortChannel0001 Ethernet4
-          - show interfaces portchannel
-          - "config hostname {{ item.name }}"
-          - exit
-      loop: "{{ switches }}"
-      loop_control:
-        label: "{{ item.name }}"
-      register: result
-
-    - name: LAG Creation
-      debug:
-        var: result
-
 
     - name: Remove Original BGP 65100
       ansible.netcommon.telnet:
@@ -304,6 +278,33 @@
       register: result
 
     - name: default BGP neighbor removal
+      ansible.builtin.debug:
+        var: result
+
+
+    - name: setup PortChannels (LAGs)
+      ansible.netcommon.telnet:
+        host: "{{ gns3_host | default(omit) }}"
+        port: "{{ item.telnet_port }}"
+        user: admin
+        password: YourPaSsWoRd
+        send_newline: yes
+        prompts:
+          - "[$#]"
+        command:
+          - sudo -s
+          - config portchannel add PortChannel0001
+          - config portchannel member add PortChannel0001 Ethernet0
+          - config portchannel member add PortChannel0001 Ethernet4
+          - show interfaces portchannel
+          - "config hostname {{ item.name }}"
+          - exit
+      with_items: "{{ switches }}"
+      loop_control:
+        label: "{{ item.name }}"
+      register: result
+
+    - name: LAG Creation
       ansible.builtin.debug:
         var: result
 
