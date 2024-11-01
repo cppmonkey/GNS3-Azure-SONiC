@@ -8,17 +8,20 @@ Utilising the collections greatly simplifies the deployment. `dellemc.enterprise
 ## Requirements
 
 ### PIP Packages
-  * ansible
-  * gns3fy ([PR #96 for GNS3 >= 2.2.22](https://github.com/davidban77/gns3fy/pull/96))
+  * [ansible](https://pypi.org/project/ansible/)
+  * [gns3fy](https://pypi.org/project/gns3fy/)
 
 
 ### Ansible Collections
-  * davidban77.gns3
+  * [ansible.netcommon](https://galaxy.ansible.com/ui/repo/published/ansible/netcommon/docs/)
+  * [ansible.utils](https://galaxy.ansible.com/ui/repo/published/ansible/utils/docs/)
+  * [davidban77.gns3](https://galaxy.ansible.com/ui/repo/published/davidban77/gns3/docs/)
 
 These can be installed by running the following commands
 ```
 python3 -m pip install -r requirements.txt
-ansible-galaxy install collection -r requirements.yml
+ansible-galaxy install -r requirements.yml
+sed -i -e 's/#!\/usr\/bin\/env python/#!\/usr\/bin\/python/g' ~/.ansible/collections/ansible_collections/davidban77/gns3/plugins/modules/*.py
 
 ```
 

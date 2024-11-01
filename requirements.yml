@@ -1,4 +1,8 @@
 ---
 collections:
-- davidban77.gns3
-
+  - name: davidban77.gns3
+    version: "1.5.0"
+  - name: ansible.netcommon
+    version: "7.1.0"
+  - name: ansible.utils
+    version: "5.1.2"
