@@ -26,7 +26,7 @@ sed -i -e 's/#!\/usr\/bin\/env python/#!\/usr\/bin\/python/g' ~/.ansible/collect
 ```
 
 ## Deploying
-### Template(s)
+### Template(s) - WIP
 Before the topology can be deployed, GNS3 needs to have the SONiC template imported.
 `ansible-playbook setup-sonic-gns3-template.yml`
 
